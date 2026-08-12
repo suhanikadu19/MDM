@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>CM25114</title>
+</head>
+<body class="bg-[#f8f5f0] text-black font-serif">
+
+  <!-- Navbar -->
+  <header class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <h1 class="text-3xl font-bold tracking-[0.3em]">LUXORA</h1>
+
+      <nav class="hidden md:flex space-x-8 uppercase text-sm tracking-widest">
+        <a href="#" class="hover:text-gray-500">Women</a>
+        <a href="#" class="hover:text-gray-500">Men</a>
+        <a href="#" class="hover:text-gray-500">Bags</a>
+        <a href="#" class="hover:text-gray-500">Shoes</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative h-screen">
+    <img
+      src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1400&q=80"
+      alt="Luxury Fashion"
+      class="w-full h-full object-cover"
+    />
+
+    <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center text-white px-4">
+      <p class="uppercase tracking-[0.4em] text-sm mb-4">Luxury Fashion</p>
+
+      <h2 class="text-5xl md:text-7xl font-light mb-6">
+        New <span class="italic">Autumn Collection</span>
+      </h2>
+
+      <p class="max-w-xl text-lg text-gray-200 mb-8">
+        Discover timeless elegance, premium craftsmanship, and modern luxury for every occasion.
+      </p>
+
+      <button class="border border-white px-8 py-3 uppercase text-sm tracking-widest hover:bg-white hover:text-black transition">
+        Shop Now
+      </button>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="py-20 px-6">
+    <div class="max-w-7xl mx-auto text-center">
+      <h3 class="text-4xl font-light mb-4">Featured Products</h3>
+      <p class="text-gray-600 mb-12">Premium fashion products with images and prices.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Product 1 -->
+        <div class="bg-white rounded-xl shadow hover:shadow-2xl transition overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80"
+            alt="Elegant Dress"
+            class="w-full h-96 object-cover"
+          />
+
+          <div class="p-6">
+            <h4 class="text-xl font-medium mb-2">Elegant Silk Dress</h4>
+            <p class="text-gray-500 text-sm mb-4">Luxury evening dress with a modern elegant look.</p>
+
+            <div class="flex items-center justify-between">
+              <span class="text-2xl font-semibold">$199</span>
+              <button class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                Buy Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="bg-white rounded-xl shadow hover:shadow-2xl transition overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+            alt="Luxury Sneakers"
+            class="w-full h-96 object-cover"
+          />
+
+          <div class="p-6">
+            <h4 class="text-xl font-medium mb-2">Luxury White Sneakers</h4>
+            <p class="text-gray-500 text-sm mb-4">Comfortable and stylish premium sneakers for everyday wear.</p>
+
+            <div class="flex items-center justify-between">
+              <span class="text-2xl font-semibold">$149</span>
+              <button class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                Buy Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="bg-white rounded-xl shadow hover:shadow-2xl transition overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80"
+            alt="Luxury Handbag"
+            class="w-full h-96 object-cover"
+          />
+
+          <div class="p-6">
+            <h4 class="text-xl font-medium mb-2">Luxury Leather Handbag</h4>
+            <p class="text-gray-500 text-sm mb-4">Premium leather handbag with a timeless luxury design.</p>
+
+            <div class="flex items-center justify-between">
+              <span class="text-2xl font-semibold">$249</span>
+              <button class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                Buy Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-8 text-center">
+    <p class="tracking-[0.3em] text-lg font-semibold mb-2">LUXORA</p>
+    <p class="text-gray-400 text-sm">© 2026 Luxora Fashion Store. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
