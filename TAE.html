@@ -5,14 +5,52 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Digital Invoice Generator</title>
     
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>"
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     </head>
     <body class="bg-gray-100 min-h-screen p-6">
-        <div class="max-w-5xl max auto bg-white shadow-lg rounded-xl p-8">
-            <div>
-                <h1 class="text-3xl font-bold text-blue-600">Digital Invoice </h1>
-                <p class="text-gray-500">Invoice Generator</p>
+        <header class="bg-gradient-to-r from-blue-600 to indigo-600 text-whiye rounded-3xl p-6 sm:p-8 mb-6 shadow-xl">
+            <div class ="flex flex-xols sm:flex-row justidy-between items-start sm:items-center gap-5">
+                <div>
+                    <div class="flex items-center gap-3">
+                        <div clas="bg-white/20 p-3 rounded-2xl text-2xl"></div>
+<div>
+    <h1 class="text-2xl sm:text-4xl font-blod">
+        Digital Invoice
+    </h1>
+    <p class="text-blue-100 mt-1">Proffessional Invoice Generator</p>
+</div>
+                    </div>
+                </div>
             </div>
+            <div class="bg-white/20 rounded-2xl p-4">
+                <p class="text-sm text-bluee-100">Invoice Number</p>
+                <p class="text-xl font-blod">#INV-001</p>
+                <input id="date"
+                type="date"
+                class="mt-2 bg-white/20 border-white/30 rounded-lg p-2 text-white">
+            </div>
+        </header>
+        <div class="gird gird-clos-1 md:grid-clos-2 gap-6 mb-6">
+            <div class="bg-gradient-to-br from-blue-100 to-bluee-200 rounded-3xl p-6 shadow-lg">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="bg-blue-600 text-white p-3 rounded-xl"></div>
+                <div>
+                    <h2 class="text-xl font-blod text-blue-800">From</h2>
+                    <p class="text-sm text-blue-600">
+                        Your business details
+                    </p>
+                </div>
+                </div>
+
+            </div>
+        <div>
+        <input type="text"
+        placeholder="Businsee Name"
+        class="w-full bg-white border border-blue-200 rounded-xl p-3 mb-3 outline-non focus:ring-2 focus:ring-blue-400">
+        <input type="email"
+        placeholder="Business Email"
+        class="w-full bg-white border border-blue-200 rounded-x p-3 mb-3 outline-none focus:ring-2 focus:ring-blue-400">
+        <textarea rows="3" placeholder="Bussiness Address" class="w-full bg-white border border-blue-200 rounded-xl p-3 outline-none focus:ring-2 focus:ring-blue-400"></textarea>
         </div>
 
     </body>
