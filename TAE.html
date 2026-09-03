@@ -127,7 +127,7 @@ class="w-full bg-white boder border-indigo-200 rounded-xl p-3 mb-3 outline-none 
     </div>
     <div class="flex justify-between mb-4">
         <span class="text-gray-700">Tax Amount</span>
-        <b id="texAmount">$0.00</b>
+        <b id="taxAmount">$0.00</b>
     </div>
     <hr class="border-indigo-300 my-5">
 
@@ -139,6 +139,96 @@ class="w-full bg-white boder border-indigo-200 rounded-xl p-3 mb-3 outline-none 
 </div>
 <footer class="text-center text-gray-500 text-sm py-6">@ 2026 Digital Invoice Generator</footer>
 
+
+<script>
+const items = document.getElementById("items")
+function addItem() {
+
+    const row = document.createElement("tr");
+
+    row.className = "border-b border-gray-300";
+
+    row.innerHTML = `
+    
+    <td class="p-3">
+        <input type="text"
+            placeholder="Product / Service Name"
+            class="name w-full border rounded-lg p-2
+                   focus:ring-2 focus:ring-blue-400 outline-none">
+    </td>
+
+    <td class="p-3 text-center">
+        <input type="number"
+            value="1"
+            min="1"
+            class="qty w-24 border rounded-lg p-2 text-center
+                   focus:ring-2 focus:ring-blue-400 outline-none"
+            oninput="calculate()">
+    </td>
+
+    <td class="p-3 text-center">
+        <input type="number"
+            value="0"
+            min="0"
+            step="0"
+            class="price w-28 border rounded-lg p-2 text-center
+                   focus:ring-2 focus:ring-blue-400 outline-none"
+            oninput="calculate()">
+    </td>
+
+    <td class="p-3 text-center font-bold">
+        <span class="subtotal">₹0.00</span>
+    </td>
+
+    <td class="p-3 text-center">
+        <button onclick="removeItem(this)"
+            class="bg-red-500 hover:bg-red-600
+                   text-white px-4 py-2 rounded-lg">
+            Remove
+        </button>
+    </td>
+
+    `;
+
+    items.appendChild(row);
+
+    calculate();
+}
+function removeItem(button){
+    if(items.children.length <= 1){
+        alert("At least one item is required.");
+        return;
+    }
+    button.closest("tr").remove();
+    calculate();
+}
+        
+    function calculate(){
+        let subtotal = 0;
+        const rows = items.querySelectorAll("tr");
+        rows.forEach(row => {
+            let qty = Number(row.querySelector(".qty").value) || 0;
+            let price = Number(row.querySelector(".price").value) || 0;
+            let amount = qty * price;
+            row.querySelector(".subtotal").textContent = `₹${amount.toFixed(2)}`;
+            subtotal += amount;
+        });
+        let taxRate =
+    Number(document.getElementById("tax").value) || 0;
+        let taxAmount = subtotal * taxRate / 100;
+        let total = subtotal + taxAmount;
+
+        document.getElementById("subtotal").textContent = `₹${subtotal.toFixed(2)}`;
+        document.getElementById("taxRate").textContent = `₹${taxRate.toFixed(2)}`;
+        document.getElementById("taxAmount").textContent = `₹${taxAmount.toFixed(2)}`;
+        document.getElementById("total").textContent = `₹${total.toFixed(2)}`;
+    }
+
+
+addItem();
+document.getElementById("date").valueAsDate = new Date();
+
+</script>
 
 </body>
 
