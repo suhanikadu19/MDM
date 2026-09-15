@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CM25114</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-red-100 p-10">
+
+    <div class="max-w-xl mx-auto bg-[#8B4513] p-6 rounded-lg shadow">
+
+        <h1 class="text-2xl font-bold text-center text-blue-600 mb-6">
+            Interview FAQ
+        </h1>
+
+        <!-- One FAQ -->
+        <div class="border rounded-lg">
+
+            <!-- Question -->
+            <div id="question"
+                 class="p-4 bg-blue-300 cursor-pointer font-bold
+                        flex justify-between">
+
+                <span>What questions are asked in an interview?</span>
+
+                <span id="icon">+</span>
+
+            </div>
+
+            <!-- Answer -->
+            <div id="answer"
+                 class="hidden p-4 text-gray-700">
+
+                <p class="font-semibold mb-2">
+                    Common Interview Questions:
+                </p>
+
+                <ul class="list-disc ml-5 space-y-1">
+                    <li>Tell me about yourself.</li>
+                    <div id="answer" class="hidden p-4 text-gray-700">
+                        <p>When asked to tell me about myself, I typically start by providing a brief overview of my professional background and key achievements. I then highlight my relevant skills and experiences that align with the position I'm applying for.</p>
+                    </div>
+                    <li>What are your strengths?</li>
+                    <li>What are your weaknesses?</li>
+                    <li>Why should we hire you?</li>
+                    <li>Where do you see yourself in 5 years?</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // Get elements
+        const question = document.getElementById("question");
+        const answer = document.getElementById("answer");
+        const icon = document.getElementById("icon");
+
+        // Click event
+        question.addEventListener("click", () => {
+
+            // Show / Hide answer
+            answer.classList.toggle("hidden");
+
+            // Change icon
+            if (answer.classList.contains("hidden")) {
+                icon.textContent = "+";
+            } else {
+                icon.textContent = "-";
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
