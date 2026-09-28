@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CM25114</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+    <div class="max-w-md mx-auto mt-10 bg-white p-6 rounded-lg shadow">
+
+        <h1 class="text-2xl font-bold text-center mb-5">
+            My To-Do List
+        </h1>
+
+        <!-- Input -->
+        <div class="flex gap-2">
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Enter a task..."
+                class="flex-1 border p-2 rounded"
+            >
+
+            <button
+                onclick="addTask()"
+                class="bg-blue-500 text-white px-4 py-2 rounded">
+                Add
+            </button>
+        </div>
+
+        <!-- Task List -->
+        <ul id="taskList" class="mt-5 space-y-2"></ul>
+
+    </div>
+
+    <script>
+        function addTask() {
+            let input = document.getElementById("taskInput");
+            let task = input.value.trim();
+
+            if (task === "") {
+                alert("Please enter a task!");
+                return;
+            }
+
+            let li = document.createElement("li");
+
+            li.className =
+                "flex justify-between items-center bg-gray-100 p-3 rounded";
+
+            li.innerHTML = `
+                <span onclick="completeTask(this)" class="cursor-pointer">
+                    ${task}
+                </span>
+
+                <button
+                    onclick="deleteTask(this)"
+                    class="bg-red-500 text-white px-2 py-1 rounded">
+                    Delete
+                </button>
+            `;
+
+            document.getElementById("taskList").appendChild(li);
+
+            input.value = "";
+        }
+
+        function completeTask(task) {
+            task.classList.toggle("line-through");
+            task.classList.toggle("text-gray-500");
+        }
+
+        function deleteTask(button) {
+            button.parentElement.remove();
+        }
+    </script>
+
+</body>
+</html>
