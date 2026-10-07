@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CM25114</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between font-sans">
+
+  <!-- Header -->
+  <header class="bg-indigo-700 text-white shadow-md py-4 px-6">
+    <div class="max-w-5xl mx-auto flex justify-between items-center">
+      <h1 class="text-xl md:text-2xl font-bold tracking-tight">Academic Grade Tracker</h1>
+      <span class="text-xs md:text-sm bg-indigo-800 px-3 py-1 rounded-full">Practical 10</span>
+    </div>
+  </header>
+
+  <!-- Main Dashboard Container -->
+  <main class="max-w-5xl mx-auto p-4 md:p-6 w-full flex-grow">
+    
+    <!-- Top Grid: Input Form and Scorecard -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+      
+      <!-- Subject Input Form -->
+      <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <h2 class="text-lg font-semibold mb-4 text-slate-700">Add Course / Subject</h2>
+        <form id="courseForm" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <input 
+            type="text" 
+            id="courseName" 
+            placeholder="Course Name (e.g., Data Structures)" 
+            required
+            class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
+          />
+          <input 
+            type="number" 
+            id="courseCredits" 
+            placeholder="Credits (e.g., 4)" 
+            min="1" 
+            max="10" 
+            required
+            class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" 
+          />
+          <select 
+            id="courseGrade" 
+            required 
+            class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-white"
+          >
+            <option value="" disabled selected>Grade Point</option>
+            <option value="10">O (10)</option>
+            <option value="9">A+ (9)</option>
+            <option value="8">A (8)</option>
+            <option value="7">B+ (7)</option>
+            <option value="6">B (6)</option>
+            <option value="5">C (5)</option>
+            <option value="0">F (0)</option>
+          </select>
+          <div class="sm:col-span-3 flex justify-end gap-2 mt-2">
+            <button 
+              type="submit" 
+              class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-150 shadow-sm"
+            >
+              Add Subject
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Real-Time Metrics Display -->
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col justify-center items-center text-center">
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">Calculated SGPA</h3>
+        <div id="sgpaDisplay" class="text-5xl font-extrabold text-indigo-600 mb-2">0.00</div>
+        <p id="totalCreditsDisplay" class="text-xs text-slate-500">Total Credits: 0</p>
+      </div>
+    </div>
+
+    <!-- Enrolled Courses Table -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center">
+        <h3 class="font-semibold text-slate-700">Enrolled Courses</h3>
+        <button id="clearBtn" class="text-xs font-medium text-red-600 hover:underline">Clear All</button>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-slate-600">
+          <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+            <tr>
+              <th class="px-6 py-3">Course Name</th>
+              <th class="px-6 py-3">Credits</th>
+              <th class="px-6 py-3">Grade Point</th>
+              <th class="px-6 py-3 text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody id="courseTableBody">
+            <!-- Dynamic JavaScript table rows -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 text-xs text-slate-400">
+    Web Fundamentals and Basic Frontend Design Lab (N-MDMWD301P) | Practical 10
+  </footer>
+
+  <!-- Inline Client-Side JavaScript -->
+  <script>
+    let courses = JSON.parse(localStorage.getItem('courses')) || [];
+
+    const courseForm = document.getElementById('courseForm');
+    const courseTableBody = document.getElementById('courseTableBody');
+    const sgpaDisplay = document.getElementById('sgpaDisplay');
+    const totalCreditsDisplay = document.getElementById('totalCreditsDisplay');
+    const clearBtn = document.getElementById('clearBtn');
+
+    function renderCourses() {
+      courseTableBody.innerHTML = '';
+      let totalCredits = 0;
+      let totalWeightedPoints = 0;
+
+      if (courses.length === 0) {
+        courseTableBody.innerHTML = `<tr><td colspan="4" class="px-6 py-6 text-center text-slate-400">No courses added yet.</td></tr>`;
+        sgpaDisplay.textContent = '0.00';
+        totalCreditsDisplay.textContent = 'Total Credits: 0';
+        return;
+      }
+
+      courses.forEach((item, index) => {
+        totalCredits += item.credits;
+        totalWeightedPoints += item.credits * item.grade;
+
+        const row = document.createElement('tr');
+        row.className = 'border-b border-slate-100 hover:bg-slate-50 transition-colors';
+        row.innerHTML = `
+          <td class="px-6 py-3 font-medium text-slate-800">${item.name}</td>
+          <td class="px-6 py-3">${item.credits}</td>
+          <td class="px-6 py-3">${item.grade}</td>
+          <td class="px-6 py-3 text-right">
+            <button onclick="removeCourse(${index})" class="text-red-500 hover:text-red-700 text-xs font-medium">Remove</button>
+          </td>
+        `;
+        courseTableBody.appendChild(row);
+      });
+
+      const finalSGPA = totalCredits > 0 ? (totalWeightedPoints / totalCredits).toFixed(2) : '0.00';
+      sgpaDisplay.textContent = finalSGPA;
+      totalCreditsDisplay.textContent = `Total Credits: ${totalCredits}`;
+      localStorage.setItem('courses', JSON.stringify(courses));
+    }
+
+    courseForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('courseName').value.trim();
+      const credits = parseFloat(document.getElementById('courseCredits').value);
+      const grade = parseFloat(document.getElementById('courseGrade').value);
+
+      courses.push({ name, credits, grade });
+      renderCourses();
+      courseForm.reset();
+    });
+
+    window.removeCourse = function(index) {
+      courses.splice(index, 1);
+      renderCourses();
+    };
+
+    clearBtn.addEventListener('click', () => {
+      courses = [];
+      localStorage.removeItem('courses');
+      renderCourses();
+    });
+
+    // Initial render
+    renderCourses();
+  </script>
+</body>
+</html>
