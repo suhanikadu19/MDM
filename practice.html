@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BAsic website</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+<body class="bg-slate-100 text-gray-800">
+    <nav class="bg-blue-600 text-hite p-4 flex justify-between">
+        <h1 class="text-xl font-bold">MY website</h1>
+        <button onclick="showMessage()" class="bg-white text-blue-600 px-4 py-2 rounded-lg">Click Me</button>
+    </nav>
+    <section class="text-center p-10">
+        <h2 class="text-3xl font-bold mb-4">Welcome to my website</h2>
+        <p class="text-gray-600 mb-5">Explore our amazing features.</p>
+        <button onclick="changText()" class="bg-blue-white px-6 py-3 roundrd-lg hover:bg-blue-800">
+            Get started
+        </button>
+        <p id="message" class="mt-4 font-semibold"></p>
+    </section>
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-5 p-6">
+        <div class="bg-white p-6 rounded-xl shadow-md">
+            <h3 class="text-xl font-bold mb-2">Feature One</h3>
+            <p>Learn more about our first feature.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md">
+            <h3 class="text-xl font-bold mb-2">Feature Two</h3>
+            <p>Learn more about our second feature.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md">
+            <h3 class="text-xl font-bold mb-2">Feature Three</h3>
+            <p>Learn more about our third feature.</p>
+        </div>
+    </section>
+        <footer class="bg-gray-800 text-white text-center p-4">
+            @2026 My Website
+        </footer>
+        <script>
+            function showMessage() {
+                document.getElementById("message").textContent = "Hello, World!";
+            }
+
+            function changText() {
+                document.getElementById("message").textContent = "Text changed!";
+            }
+        </script>
+
+    
+</body>
